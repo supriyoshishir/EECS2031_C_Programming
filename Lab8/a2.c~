@@ -1,0 +1,197 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, k, l;
+
+    char command;
+    int puzzle[4][4];
+
+    scanf("%d %d", &k, &l);
+
+    for (i=0; i<4; i++) {
+        for (j=0; j<4; j++) {
+            if (!(k == i && l == j) ) {
+                scanf("%d", &puzzle[i][j]);
+            } else {
+                puzzle[i][j] = -1;
+            }
+        }
+    }
+
+    for (i =0; i<4; i++) {
+        for (j=0; j<4; j++) {
+            if (puzzle[i][j] == -1) {
+                printf("    ");
+            } else {
+                printf("%-4d", puzzle[i][j]);
+            }
+        }
+        printf("\n");
+    }
+
+    printf("Enter a Command:\n");
+    scanf("%c", &command);
+    int typ = 0;
+
+    while(typ==0) {
+
+        while(command == ' '|| command == '\t' || command == '\n'  ) {
+            scanf("%c", &command);
+        }
+
+        if(command=='q') {
+            return(0);
+        }
+
+        while(command != 'u' && command != 'd' && command != 'l' && command != 'r' ) {
+            if (command != 'u' || command != 'd' || command != 'l' || command != 'r') {
+                printf("No Such Command\n");
+            }
+            scanf("%c", &command);
+            break;
+        }
+
+        while(command == 'u' || command == 'd' || command == 'l' || command == 'r' || command=='q') {
+
+            switch(command){
+
+                case 'u':
+
+                    if(k-1<0) {
+                        printf("Not a valid move");
+                        scanf("%c", &command);
+                        break;
+                    }
+
+                    else {
+                        int temp = puzzle[k-1][l];
+                        puzzle[k][l] = temp;
+                        k =  k-1;
+                        for(i=0; i<=3; i++) { // printing the puzzle
+
+                            for(j=0; j<=3; j++) {
+
+                                if(k==i && l==j ) {
+
+                                    printf("    ");
+
+                                }
+                                else {
+
+                                    printf("%-4d", puzzle[i][j]);
+                                }
+                            }
+
+                            printf("\n");
+                        }
+                        scanf("%c", &command);
+                        break;
+ 
+                    }
+
+                case 'd' :
+
+                    if(k+1>3) {
+                        printf("Not a valid move");
+                        scanf("%c", &command);
+                        break;
+                    }
+
+                    else {
+                        int temp = puzzle[k+1][l];
+                        puzzle[k][l] = temp;
+                        k =  k+1;
+                        for(i=0; i<=3; i++) { // printing the puzzle
+
+                            for(j=0; j<=3; j++) {
+
+                                if(k==i && l==j ) {
+
+                                    printf("    ");
+
+                                }
+                                else {
+
+                                    printf("%-4d", puzzle[i][j]);
+                                }
+                            }
+
+                            printf("\n");
+                        }
+
+                        scanf("%c", &command);
+                        break;
+                    }
+
+                case 'l' :
+
+                    if(k-1<0) {
+                        printf("Not a valid move");
+                        scanf("%c", &command);
+                        break;
+
+                    }
+                    else {
+                        int temp = puzzle[k][l-1];
+                        puzzle[k][l] = temp;
+                        l =  l-1;
+                        for(i=0; i<=3; i++) { // printing the puzzle
+
+                            for(j=0; j<=3; j++) {
+ 
+                                if(k==i && l==j ) {
+
+                                    printf("    ");
+
+                                }
+                                else {
+
+                                    printf("%-4d", puzzle[i][j]);
+                                }
+                            }
+
+                            printf("\n");
+                        }
+
+                        scanf("%c", &command);
+                        break;
+
+                    }
+
+                case 'r' :
+                    if(l+1>3) {
+                        printf("Not a valid move");
+                        scanf("%c", &command);
+                        break;
+                    }
+                    else {
+                        int temp = puzzle[k][l+1];
+                        puzzle[k][l] = temp;
+                        l =  l+1;
+                        for(i=0; i<=3; i++) { // printing the puzzle
+
+                            for(j=0; j<=3; j++) {
+
+                                if(k==i && l==j ) {
+
+                                    printf("    ");
+
+                                }
+                                else {
+
+                                    printf("%-4d", puzzle[i][j]);
+                                }
+                            }
+                            printf("\n");
+                        }
+                        scanf("%c", &command);
+                        break;
+                    }
+
+                case  'q' :
+
+                    return(0);
+            }
+        }
+    }
+}

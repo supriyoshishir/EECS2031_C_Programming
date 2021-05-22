@@ -1,0 +1,16 @@
+#!/bin/bash
+
+filename1= "$1"
+filename2= "$2"
+while read -r line
+do
+IFS='	' read -r a array <<< "$line1"
+	while read -r linee
+	do
+		IFS='	' read -r a array <<< "$line2"
+		if [ ${array [0]} == ${array [1]} ]
+		then
+			echo " ${array [0]} == ${array [1]} "
+		fi
+	done < "$filename1"
+done < "$filename2"
